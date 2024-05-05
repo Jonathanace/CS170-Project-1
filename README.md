@@ -15,6 +15,9 @@ State's other function `get_valid_children` returns a list of `State` objects fo
 
 Upon initialization, a `frontier` is created for our algorithm, beginning with only the `State` object passed to `init_state`. The puzzle object generates a `goal_state` based on the size of the `init_state`, and creates an empty set `visited` for referencing visited states. 
 
+Puzzle has two functions: `check_end_state` and `get_valid_children`. `check_end_state` is not strictly required to be implemented, but exists purely as a convenience. It returns a boolean value representing whether a state's tile configuration, represented by the `state` argument, is equivalent to the `goal_state`. That is, it detects whether or not a state is a goal state or not. 
+
+Puzzle's other function, `solve`, takes no arguments. It uses a while loop to repeatedly pop the State from the frontier with the lowest score as defined by our puzzle's `criteria`. It checks if that state is an end state, and if so, calls the state's `get_path` method to get the path that led to that final state. Otherwise, it call's the state's `get_valid_children` method and adds the valid children to the puzzle's `frontier` if that child is not in the `visited` set. Then, it adds that child to the `visited` set. 
 # Optimizations
 
 # Results
