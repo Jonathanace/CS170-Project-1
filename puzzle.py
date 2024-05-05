@@ -4,7 +4,7 @@ import time
 
 # State Class
 class State:
-    def __init__(self: np.array, state, parent=None):
+    def __init__(self, state: np.array, parent=None):
         self.parent = parent
         self.size = state.size
         self.shape = state.shape
@@ -27,7 +27,7 @@ class State:
         res = []
         for dir in [[1,0],[-1,0],[0,1],[0,-1]]:
             child_loc = loc+dir
-            if np.all([0 <= child_loc, child_loc < 3]): # Check if child is valid
+            if np.all([0 <= child_loc, child_loc < self.shape[0]]): # Check if child is valid
                 new_state = self.state.copy()
                 new_state[tuple(loc)] = self.state[tuple(child_loc)]
                 new_state[tuple(child_loc)] = self.state[tuple(loc)]
@@ -54,21 +54,24 @@ class Puzzle:
         self.visited = set()
         print(f'initial state:\n{init_state}')
         print(f'goal state:\n{self.goal_state}')
-        print()
+        # print()
     def check_end_state(self, state):
         eq = np.all(self.goal_state == state)
         return eq
     def solve(self):
         while self.frontier:
+            # print('frontier: ', self.frontier)
             cur = heappop(self.frontier)[1]
-            # print('Expanding node\n', cur)
-            if self.check_end_state(cur.state):
+            print('Expanding node\n', cur)
+            if np.all(self.goal_state == cur.state):
                 print('End state found')
                 return cur.get_path()
 
             for child in cur.get_valid_children():                    
                 if child not in self.visited:
                     criteria = self.criteria(state=child.state, goal=self.goal_state)
+                    # print('pushing\n', criteria, '\n', child)
                     heappush(self.frontier, (criteria, child))
                     self.visited.add(child)
+        return False
                         
