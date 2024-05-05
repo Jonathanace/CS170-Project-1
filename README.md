@@ -8,8 +8,12 @@ The implementation uses two classes: `State` and `Puzzle`.
 
 If the current state has no parent (i.e. it is the initial state) get_path returns a one-element list containing the current state's tile configuration. If the current state does have a parent, then `get_path` returns the return value of `get_path` called on its parent, with its own state configuration appended to the end of it. This recursive calling allows us to easily trace the solution from initial state to goal state. 
 
+State's other function `get_valid_children` returns a list of `State` objects for each of its children. A child of the current state is a state that we can reach by making a single move on the current state. A state is considered valid if it is physically possible (e.g. moving a tile from outside the valid board space into the board is considered invalid). 
+
 ## Puzzle
 `Puzzle` represents the A* algorithm operating on a given starting state with a given criteria. As such, it accepts two arguments: `init_state`, a `State` object representing the initial state, and `criteria` which accepts a _function_ to be used as our selection criteria. 
+
+Upon initialization, a `frontier` is created for our algorithm, beginning with only the `State` object passed to `init_state`. The puzzle object generates a `goal_state` based on the size of the `init_state`, and creates an empty set `visited` for referencing visited states. 
 
 # Optimizations
 
