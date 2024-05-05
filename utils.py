@@ -6,10 +6,13 @@ def uniform_cost(state, goal):
 
 def misplaced_tile(state: np.ndarray, goal: np.ndarray):
     crit = np.sum(state != goal)
+    if crit > 0: 
+        crit -= 1
     return crit
 
 def euclidean_distance(state: np.ndarray, goal: np.ndarray):
-    return np.linalg.norm(state - goal)
+    crit = np.linalg.norm(state - goal)
+    return  crit
 
 # Starting States
 trivial = [
@@ -41,3 +44,11 @@ oh_boy = [
     [6,0,2],
     [5,4,3]
 ]
+
+fifteen_puzzle = [[1,2,0,4],
+                  [5,7,3,12],
+                  [10,6,8,11],
+                  [9,13,14,15]]
+
+if __name__ == '__main__':
+    print(np.array([[1,2,3],[4,5,6],[7,8,9]]).shape)
