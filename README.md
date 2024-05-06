@@ -34,6 +34,6 @@ In order to inspect the information more closely we can use a log scale for the 
 
 ![image](https://github.com/Jonathanace/CS170-Project-1/assets/55035716/5284aa70-6b3c-4046-93d9-5f9aad598539)
 
-As we can see all algorithms perform similarly well on trivial problems, but as the difficulty increases, the difference between uniform cost and the other two heuristics increases. There are, however, exceptions to this rule, as uniform cost performs surprisingly well on the "doable" problem and euclidean distance performs exceptionally worse on the "oh boy" difficulty.
+As we can see all algorithms perform similarly well on trivial problems, but as the difficulty increases, the difference between uniform cost and the other two heuristics increases. There are, however, exceptions to this rule, as uniform cost performs surprisingly well on the "doable" problem and euclidean distance performs worse than "expected" on the "oh boy" difficulty, but still better than the uniform cost heuristic.
 
 # Miscellaneous
