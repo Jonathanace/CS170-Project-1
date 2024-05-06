@@ -52,6 +52,8 @@ class Puzzle:
         heappush(self.frontier, (criteria(state=init_state.state, goal=self.goal_state), init_state))
         self.criteria = criteria
         self.visited = set()
+        self.max_frontier_size = 0
+        self.nodes_visited = 1
         print(f'initial state:\n{init_state}')
         print(f'goal state:\n{self.goal_state}')
         # print()
@@ -60,18 +62,26 @@ class Puzzle:
         return eq
     def solve(self):
         while self.frontier:
+            self.max_frontier_size = max(self.max_frontier_size, len(self.frontier))
             # print('frontier: ', self.frontier)
             cur = heappop(self.frontier)[1]
             print('Expanding node\n', cur)
             if np.all(self.goal_state == cur.state):
                 print('End state found')
-                return cur.get_path()
-
+                return {
+                    'path': cur.get_path(),
+                    'time': self.nodes_visited,
+                    'space': self.max_frontier_size,
+                }
             for child in cur.get_valid_children():                    
                 if child not in self.visited:
                     criteria = self.criteria(state=child.state, goal=self.goal_state)
                     # print('pushing\n', criteria, '\n', child)
                     heappush(self.frontier, (criteria, child))
                     self.visited.add(child)
+                    self.nodes_visited += 1
         return False
                         
+
+if __name__ == "__main__":
+    pass
