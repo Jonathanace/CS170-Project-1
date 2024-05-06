@@ -23,5 +23,17 @@ Puzzle's other function, `solve`, takes no arguments. It uses a while loop to re
 The main optimization used in this design was the usage of a min-heap as the puzzle's frontier. The way this works is that when pushing a state to the heap using `heapq.heappush` we also include the score as determined by the `criteria` function. Internally, the min-heap keeps its elements sorted from lowest to highest based on a value we pass to the heap when pushing an item. In our case, the heap is sorted by the criteria, or heuristic, of each associated state. Thus, we can simply pop the first element from our heap using `heapq.heappop` without having to iterate through the list to find the element with the best heuristic value. 
 
 # Results
+![image](https://github.com/Jonathanace/CS170-Project-1/assets/55035716/4219c621-128f-40af-acdc-c5cbbdf563a8)
+![image](https://github.com/Jonathanace/CS170-Project-1/assets/55035716/ce3cf9ee-7573-46d5-91ac-aa029b41281a)
+
+The number of nodes expanded is the total number of nodes added to the frontier. The maximum queue size is the maximum size of the frontier throughout the algorithm's runtime. Interestingly, we can see that the two line graphs have a simlar shape, despite their scales and units being different.
+
+In order to inspect the information more closely we can use a log scale for the y-axis.
+
+![image](https://github.com/Jonathanace/CS170-Project-1/assets/55035716/52ecdc9e-23f0-4bec-883a-4fcef927f40b)
+
+![image](https://github.com/Jonathanace/CS170-Project-1/assets/55035716/5284aa70-6b3c-4046-93d9-5f9aad598539)
+
+
 
 # Miscellaneous
