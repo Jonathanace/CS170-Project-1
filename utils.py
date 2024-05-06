@@ -50,5 +50,23 @@ fifteen_puzzle = [[1,2,0,4],
                   [10,6,8,11],
                   [9,13,14,15]]
 
+# Define premade initial states
+start_states = {
+    'trivial': trivial,
+    'very_easy': very_easy,
+    'easy': easy,
+    'doable': doable,
+    'oh_boy': oh_boy,
+    # 'fifteen_puzzle': fifteen_puzzle
+}
+
+criterium = {
+    'uniform_cost': uniform_cost,
+    'misplaced_tile': misplaced_tile,
+    'euclidean_distance': euclidean_distance,
+}
+
+
+
 if __name__ == '__main__':
     print(np.array([[1,2,3],[4,5,6],[7,8,9]]).shape)
